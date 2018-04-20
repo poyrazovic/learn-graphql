@@ -1,0 +1,17 @@
+{
+  "name": "learn-graphql",
+  "version": "1.0.0",
+  "description": "A graphql playground",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node index.js"
+  },
+  "author": "Sertac Poyraz",
+  "license": "ISC",
+  "dependencies": {
+    "graphql": "^0.13.2"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1"
+  }
+}
