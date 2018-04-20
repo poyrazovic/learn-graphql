@@ -34,6 +34,10 @@ app.use(serverData.url.graphQL, graphqlHTTP({
     graphiql: true
 }));
 
+app.get('*', (req, res) => {
+   res.send('404!');
+});
+
 app.listen(serverData.port, () => {
     console.log(`> Server started! \n> http://localhost:${serverData.port + serverData.url.root}`);
 });
