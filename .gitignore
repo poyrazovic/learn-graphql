@@ -1,6 +1,11 @@
+# DEPENDENCIES
 node_modules
-package-lock.json
-yarn.lock
-.idea
 build
 test
+
+# IDE
+.idea
+
+# LOCK
+package-lock.json
+yarn.lock

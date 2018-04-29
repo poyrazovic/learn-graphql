@@ -3,12 +3,17 @@
   "version": "1.0.0",
   "description": "A graphql playground",
   "main": "index.js",
+  "author": "Sertac Poyraz <sertacpoyrazz@gmail.com>",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/poyrazovic/learn-graphql.git"
+  },
   "scripts": {
     "start": "babel-node index.js"
   },
-  "author": "Sertac Poyraz",
-  "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "express": "^4.16.3",
     "express-graphql": "^0.6.12",
     "graphql": "^0.13.2"

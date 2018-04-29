@@ -1,37 +1,58 @@
 import express from 'express';
 import graphqlHTTP from 'express-graphql';
 import { buildSchema } from 'graphql';
+import axios from 'axios';
 
 let serverData = {
-    port: '4000',
-    url: {
-        root: '/',
-        graphQL: '/graphql'
-    }
+	port: '4001',
+  url: {
+    root: '/',
+	  users: '/users',
+    graphQL: '/graphql'
+  }
 };
 
 let schema = buildSchema(`
-    type Query {
-        hello: String
-    }
+	type User {
+		id: String
+		name: String
+		email: String
+		website: String
+		address: Address
+	}
+	
+	type Address {
+		city: String
+	}
+	
+	type Query {
+    users: [User]
+  }
 `);
 
-let root = {
-    hello: () => 'Hello World!'
+let users = {
+  users: () => {
+  	return axios.get('https://jsonplaceholder.typicode.com/users')
+		  .then((res) => res.data);
+  },
 };
 
 let app = express();
 app.get(serverData.url.root, (req, res) => {
-    res.send(`
-        <p>Homepage</p>
-        <a href="${serverData.url.graphQL}">GraphQL</a>
-    `);
+	res.send(`
+	  <p>Homepage</p>
+	  <a href="${serverData.url.graphQL}">GraphQL</a>
+  `);
+});
+
+app.get(serverData.url.users, (req, res) => {
+	res.send('USERS');
 });
 
 app.use(serverData.url.graphQL, graphqlHTTP({
-    schema: schema,
-    rootValue: root,
-    graphiql: true
+  schema: schema,
+  rootValue: users,
+  graphiql: true
 }));
 
 app.get('*', (req, res) => {
